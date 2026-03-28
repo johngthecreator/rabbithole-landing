@@ -1,10 +1,15 @@
 ---
 import BgGrid from "@/components/assets/BgGrid.astro";
+import { Image } from "astro:assets";
+import DijkstraLandscape from "@/images/rabbithole-in-action/dijkstra-landscape.png";
+import DijkstraInterior from "@/images/rabbithole-in-action/dijkstra-interior.png";
+import PeptidesVideo from "@/images/rabbithole-in-action/peptides-video.png";
+import PeptidesSummary from "@/images/rabbithole-in-action/peptides-summary.png";
 const themes = [
-  { name: "Dijkstra Landscape", image: "/images/rabbithole-in-action/dijkstra-landscape.png", caption: "A 1952 CS classic. Now a video." },
-  { name: "Dijkstra Interior", image: "/images/rabbithole-in-action/dijkstra-interior.png", caption: "Still Dijkstra. Just harder to look away." },
-  { name: "Peptides Video", image: "/images/rabbithole-in-action/peptides-video.png", caption: "Dense research. Digestible in minutes." },
-  { name: "Peptides Summary", image: "/images/rabbithole-in-action/peptides-summary.png", caption: "The summary wrote itself." },
+  { name: "Dijkstra Landscape", image: DijkstraLandscape, caption: "A 1952 CS classic. Now a video." },
+  { name: "Dijkstra Interior", image: DijkstraInterior, caption: "Still Dijkstra. Just harder to look away." },
+  { name: "Peptides Video", image: PeptidesVideo, caption: "Dense research. Digestible in minutes." },
+  { name: "Peptides Summary", image: PeptidesSummary, caption: "The summary wrote itself." },
 ];
 ---
 
@@ -57,7 +62,7 @@ const themes = [
       {
         themes.map(({ name, image }) => (
           <div class="relative w-full keen-slider__slide">
-            <img src={image} alt={name} class="w-full h-auto block" />
+            <Image src={image} width={1534} alt={name} class="w-full h-auto block" />
           </div>
         ))
       }
