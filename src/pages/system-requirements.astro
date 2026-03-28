@@ -1,0 +1,95 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BgGrid from "@/components/assets/BgGrid.astro";
+---
+
+<BaseLayout>
+  <section class="border-b border-white/20 divide-y divide-white/20">
+    <div class="px-8 py-6 relative">
+      <BgGrid />
+      <h1 class="text-3xl font-black text-white uppercase">System Requirements</h1>
+      <p class="text-white/40 text-sm mt-2">What you need to run RabbitHole effectively</p>
+    </div>
+
+    <div class="px-8 py-12 max-w-3xl space-y-12 text-white/70 text-sm leading-relaxed">
+
+      <div>
+        <p>RabbitHole runs entirely on your device using on-device AI. This means performance is directly tied to your hardware. Below are the minimum and recommended specifications to ensure a smooth experience.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-6">Minimum Requirements</h2>
+        <div class="divide-y divide-white/10 border border-white/10">
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white/40 uppercase font-black text-xs">Component</span>
+            <span class="text-white/40 uppercase font-black text-xs">Minimum</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">RAM</span>
+            <span>8 GB</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Storage</span>
+            <span>3 GB free disk space (for model download)</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Processor</span>
+            <span>Intel Core i5 / AMD Ryzen 5 / Apple Silicon (M1 or later)</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Browser</span>
+            <span>Google Chrome 120 or later</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Operating System</span>
+            <span>macOS 12+, Windows 10 (64-bit)+, Ubuntu 20.04+</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">GPU</span>
+            <span>Required — must support WebGPU</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-6">Recommended</h2>
+        <div class="divide-y divide-white/10 border border-white/10">
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white/40 uppercase font-black text-xs">Component</span>
+            <span class="text-white/40 uppercase font-black text-xs">Recommended</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">RAM</span>
+            <span>16 GB or more</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Storage</span>
+            <span>5 GB+ free disk space</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Processor</span>
+            <span>Intel Core i7/i9 / AMD Ryzen 7/9 / Apple Silicon (M2 or later)</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Browser</span>
+            <span>Latest version of Google Chrome</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">Operating System</span>
+            <span>macOS 14+, Windows 11, Ubuntu 22.04+</span>
+          </div>
+          <div class="grid grid-cols-2 px-6 py-4">
+            <span class="text-white font-black uppercase text-xs">GPU</span>
+            <span>Dedicated GPU with 4 GB+ VRAM</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">A Note on Performance</h2>
+        <p>RabbitHole only requires storage for the model download (under 3 GB). All generated content — videos, summaries, and any other output — is created on the fly and never saved to disk. We work in our best effort to ensure RabbitHole runs well on hardware meeting the minimum specifications. If your machine is below the minimum requirements, you may experience slow generation, long load times, or instability. Users running RabbitHole on hardware below the minimum specs do so at their own discretion. Please review our <a href="/terms-and-conditions" class="text-white underline hover:text-white/60 transition">Terms & Conditions</a> for more detail.</p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

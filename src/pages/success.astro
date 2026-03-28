@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BgGrid from "@/components/assets/BgGrid.astro";
+---
+
+<BaseLayout>
+  <section class="border-b border-white/20">
+    <div class="relative p-8 h-[calc(100vh-var(--nav-height,64px))] flex items-center justify-center">
+      <BgGrid />
+      <div class="relative z-10 text-center max-w-lg">
+        <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl">
+          Payment Successful
+        </h1>
+        <p class="text-white/60 mt-4 text-lg">
+          You're all set. Head back to the RabbitHole extension to get started. You can close this tab.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

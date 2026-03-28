@@ -1,0 +1,88 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BgGrid from "@/components/assets/BgGrid.astro";
+---
+
+<BaseLayout>
+  <section class="border-b border-white/20 divide-y divide-white/20">
+    <div class="px-8 py-6 relative">
+      <BgGrid />
+      <h1 class="text-3xl font-black text-white uppercase">Terms & Conditions</h1>
+      <p class="text-white/40 text-sm mt-2">Last updated: March 28, 2026</p>
+    </div>
+    <div class="px-8 py-12 max-w-3xl space-y-10 text-white/70 text-sm leading-relaxed">
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">1. Acceptance of Terms</h2>
+        <p>By installing or using the RabbitHole browser extension ("the Extension"), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not install or use the Extension.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">2. License</h2>
+        <p>Upon purchasing RabbitHole, you are granted a non-exclusive, non-transferable, perpetual license to use the Extension on your personal devices. This license is for personal use only. You may not resell, sublicense, distribute, or otherwise transfer the Extension or your license to any third party.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">3. Lifetime Access</h2>
+        <p>Your one-time purchase grants you lifetime access to the Extension, including any future updates released under the same version. We reserve the right to release major version upgrades as separate paid products. We will make reasonable efforts to maintain the Extension and ensure continued compatibility with supported browsers.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">4. Hardware Requirements & Performance</h2>
+        <p>RabbitHole runs entirely on your local device using on-device AI processing. Performance is directly dependent on your hardware. We work in our best effort to ensure the Extension runs properly on supported hardware configurations.</p>
+        <p class="mt-3 font-black text-white uppercase text-xs">Minimum Recommended Specifications:</p>
+        <ul class="list-disc list-inside mt-3 space-y-2">
+          <li>RAM: 8 GB (16 GB recommended)</li>
+          <li>Storage: 10 GB of available disk space for model files</li>
+          <li>Operating System: macOS 12 Monterey or later, Windows 10 (64-bit) or later, Ubuntu 20.04 or later</li>
+          <li>Browser: Google Chrome version 120 or later</li>
+          <li>Processor: Modern multi-core CPU (Apple Silicon, Intel Core i5/i7/i9, AMD Ryzen 5 or higher)</li>
+          <li>GPU: Optional but recommended for significantly faster processing</li>
+        </ul>
+        <p class="mt-4 text-white/50 italic">Users who choose to run RabbitHole on hardware that does not meet the minimum recommended specifications do so entirely at their own discretion and risk. We do not guarantee functionality, stability, or performance on hardware below these specifications, and we are unable to provide support for issues arising from inadequate hardware. By installing the Extension on non-qualifying hardware, you acknowledge and accept that degraded performance, instability, or failure to function may occur.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">5. Refunds</h2>
+        <p>All purchases are processed through the Chrome Web Store and are subject to Google's refund policies. As the Extension performs local AI processing that is hardware-dependent, we strongly encourage you to review the minimum hardware specifications before purchasing. Refund requests citing hardware incompatibility on systems below the minimum recommended specifications may not be eligible for a refund at our discretion.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">6. Disclaimer of Warranties</h2>
+        <p>The Extension is provided "as is" without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the Extension will be error-free, uninterrupted, or that defects will be corrected.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">7. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, RabbitHole and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Extension, including but not limited to loss of data, hardware damage, or loss of productivity, even if we have been advised of the possibility of such damages.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">8. Prohibited Use</h2>
+        <p>You agree not to:</p>
+        <ul class="list-disc list-inside mt-3 space-y-2">
+          <li>Reverse engineer, decompile, or disassemble the Extension</li>
+          <li>Use the Extension for any unlawful purpose</li>
+          <li>Attempt to circumvent any licensing or access controls</li>
+          <li>Redistribute or resell the Extension or your license</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">9. Changes to These Terms</h2>
+        <p>We reserve the right to update these Terms and Conditions at any time. Changes will be posted on this page with an updated date. Continued use of the Extension after changes are posted constitutes your acceptance of the revised terms.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">10. Governing Law</h2>
+        <p>These Terms and Conditions shall be governed by and construed in accordance with applicable laws, without regard to conflict of law provisions.</p>
+      </div>
+
+      <div>
+        <h2 class="text-white font-black uppercase text-lg mb-3">11. Contact</h2>
+        <p>For any questions regarding these Terms and Conditions, please contact us through the Chrome Web Store listing page.</p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

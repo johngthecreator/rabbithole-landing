@@ -1,9 +1,25 @@
-<section class="border-white/20 border-b">
-  <div class="bg-transparent duration-200 group hover:bg-orange">
-    <a
-      href="mailto:michael@andreuzza.com"
-      class="text-white text-center items-center uppercase font-black w-full bg-orange duration-200 focus:outline-disc focus:ring-0 hoder:rounded-0 inline-flex justify-center lg:py-24 lg:text-7xl px-4 py-6 rounded-full text-4xl"
-      >Get a quote</a
-    >
+---
+import BgGrid from "@/components/assets/BgGrid.astro";
+---
+
+<section class="border-white/20 border-b divide-y divide-white/20">
+  <div class="px-8 py-6 relative">
+    <BgGrid />
+    <h2 class="text-3xl font-black text-white uppercase">Pricing</h2>
+  </div>
+  <div class="p-8 relative">
+    <BgGrid />
+    <div class="flex flex-col items-start gap-4">
+      <div class="flex items-end gap-2">
+        <span class="text-white font-black text-7xl lg:text-9xl tracking-tighter">$10.99</span>
+        <span class="text-white/60 font-black uppercase text-xl mb-3">one-time</span>
+      </div>
+      <p class="text-white font-black uppercase text-2xl">Lifetime Access</p>
+      <p class="text-white/60 text-sm max-w-md">Pay once, own it forever. No subscriptions, no renewals — just RabbitHole on your device for life.</p>
+      <a
+        href="https://chromewebstore.google.com/detail/rabbithole/dldneoaipflgcldijkcjkfknemcjbcbh"
+        class="mt-4 inline-flex items-center justify-center px-8 py-4 bg-white text-black font-black uppercase text-lg rounded-full hover:bg-orange hover:text-white transition duration-200"
+      >Get Lifetime Access</a>
+    </div>
   </div>
 </section>
