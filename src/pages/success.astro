@@ -16,7 +16,7 @@ import BgGrid from "@/components/assets/BgGrid.astro";
 
       <!-- Success state (hidden until key is loaded) -->
       <div id="state-success" class="relative z-10 text-center max-w-lg hidden">
-        <p class="text-white/60 uppercase tracking-widest text-sm font-black mb-4">Payment Successful</p>
+        <p class="text-white uppercase tracking-widest text-sm font-black mb-4">Payment Successful</p>
         <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl mb-8">
           Your License Key
         </h1>
@@ -43,7 +43,7 @@ import BgGrid from "@/components/assets/BgGrid.astro";
 
         <div class="text-left border border-white/20 rounded-2xl divide-y divide-white/20 mb-8">
           <div class="px-5 py-4">
-            <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-1">Step 1</p>
+            <p class="text-white text-xs uppercase tracking-widest font-black mb-1">Step 1</p>
             <p class="text-white text-sm">
               Install the
               <a
@@ -54,18 +54,14 @@ import BgGrid from "@/components/assets/BgGrid.astro";
             </p>
           </div>
           <div class="px-5 py-4">
-            <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-1">Step 2</p>
+            <p class="text-white text-xs uppercase tracking-widest font-black mb-1">Step 2</p>
             <p class="text-white text-sm">Open the extension and sign in with Google</p>
           </div>
           <div class="px-5 py-4">
-            <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-1">Step 3</p>
+            <p class="text-white text-xs uppercase tracking-widest font-black mb-1">Step 3</p>
             <p class="text-white text-sm">Enter your license key above when prompted</p>
           </div>
         </div>
-
-        <p class="text-white/40 text-xs">
-          A copy of this key has been sent to your email. You can also retrieve it by revisiting this page.
-        </p>
       </div>
 
       <!-- No session state (navigated directly, or Stripe didn't append session_id) -->
@@ -73,7 +69,7 @@ import BgGrid from "@/components/assets/BgGrid.astro";
         <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl">
           Payment Successful
         </h1>
-        <p class="text-white/60 mt-4 text-lg">
+        <p class="text-white mt-4 text-lg">
           You're all set. Head back to the RabbitHole extension to get started. You can close this tab.
         </p>
       </div>
@@ -83,7 +79,7 @@ import BgGrid from "@/components/assets/BgGrid.astro";
         <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl mb-4">
           Something Went Wrong
         </h1>
-        <p id="error-message" class="text-white/60 text-lg mb-8">
+        <p id="error-message" class="text-white text-lg mb-8">
           We couldn't retrieve your license key. Please try refreshing the page.
         </p>
         <button
