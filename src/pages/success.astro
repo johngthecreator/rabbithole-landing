@@ -5,9 +5,71 @@ import BgGrid from "@/components/assets/BgGrid.astro";
 
 <BaseLayout>
   <section class="border-b border-white/20">
-    <div class="relative p-8 h-[calc(100vh-var(--nav-height,64px))] flex items-center justify-center">
+    <div class="relative p-8 min-h-[calc(100vh-var(--nav-height,64px))] flex items-center justify-center">
       <BgGrid />
-      <div class="relative z-10 text-center max-w-lg">
+
+      <!-- Loading state -->
+      <div id="state-loading" class="relative z-10 text-center max-w-lg">
+        <div class="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-6"></div>
+        <p class="text-white/60 text-lg">Retrieving your license key...</p>
+      </div>
+
+      <!-- Success state (hidden until key is loaded) -->
+      <div id="state-success" class="relative z-10 text-center max-w-lg hidden">
+        <p class="text-white/60 uppercase tracking-widest text-sm font-black mb-4">Payment Successful</p>
+        <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl mb-8">
+          Your License Key
+        </h1>
+
+        <div class="border border-white/20 rounded-2xl p-6 mb-6 bg-white/5">
+          <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-3">Save this key — you'll need it to activate the extension</p>
+          <div class="flex items-center gap-3">
+            <code id="license-key-display" class="text-white font-mono font-black text-2xl lg:text-3xl tracking-widest flex-1 text-center select-all"></code>
+            <button
+              id="copy-button"
+              title="Copy to clipboard"
+              class="flex-shrink-0 p-2 rounded-lg border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-colors"
+            >
+              <svg id="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg id="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="text-left border border-white/20 rounded-2xl divide-y divide-white/20 mb-8">
+          <div class="px-5 py-4">
+            <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-1">Step 1</p>
+            <p class="text-white text-sm">
+              Install the
+              <a
+                href="https://chromewebstore.google.com/detail/rabbithole/dldneoaipflgcldijkcjkfknemcjbcbh"
+                class="text-orange underline underline-offset-2 hover:text-white transition-colors"
+                target="_blank"
+              >RabbitHole Chrome extension</a>
+            </p>
+          </div>
+          <div class="px-5 py-4">
+            <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-1">Step 2</p>
+            <p class="text-white text-sm">Open the extension and sign in with Google</p>
+          </div>
+          <div class="px-5 py-4">
+            <p class="text-white/40 text-xs uppercase tracking-widest font-black mb-1">Step 3</p>
+            <p class="text-white text-sm">Enter your license key above when prompted</p>
+          </div>
+        </div>
+
+        <p class="text-white/40 text-xs">
+          A copy of this key has been sent to your email. You can also retrieve it by revisiting this page.
+        </p>
+      </div>
+
+      <!-- No session state (navigated directly, or Stripe didn't append session_id) -->
+      <div id="state-no-session" class="relative z-10 text-center max-w-lg hidden">
         <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl">
           Payment Successful
         </h1>
@@ -15,6 +77,82 @@ import BgGrid from "@/components/assets/BgGrid.astro";
           You're all set. Head back to the RabbitHole extension to get started. You can close this tab.
         </p>
       </div>
+
+      <!-- Error state -->
+      <div id="state-error" class="relative z-10 text-center max-w-lg hidden">
+        <h1 class="text-white font-black uppercase tracking-tighter text-4xl lg:text-6xl mb-4">
+          Something Went Wrong
+        </h1>
+        <p id="error-message" class="text-white/60 text-lg mb-8">
+          We couldn't retrieve your license key. Please try refreshing the page.
+        </p>
+        <button
+          onclick="window.location.reload()"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-black uppercase text-sm rounded-full hover:bg-orange hover:text-white transition duration-200"
+        >
+          Retry
+        </button>
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const LAMBDA_BASE = import.meta.env.PUBLIC_LAMBDA_BASE;
+
+  function show(id: string) {
+    ['state-loading', 'state-success', 'state-no-session', 'state-error'].forEach((s) => {
+      const el = document.getElementById(s);
+      if (el) el.classList.toggle('hidden', s !== id);
+    });
+  }
+
+  async function init() {
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+
+    if (!sessionId) {
+      show('state-no-session');
+      return;
+    }
+
+    try {
+      const res = await fetch(`${LAMBDA_BASE}/license-key?sessionId=${encodeURIComponent(sessionId)}`);
+      const json = await res.json();
+
+      if (!res.ok || !json.licenseKey) {
+        const msg = document.getElementById('error-message');
+        if (msg) msg.textContent = json.message ?? 'We couldn\'t retrieve your license key. Please try refreshing the page.';
+        show('state-error');
+        return;
+      }
+
+      const display = document.getElementById('license-key-display');
+      if (display) display.textContent = json.licenseKey;
+
+      show('state-success');
+      setupCopyButton(json.licenseKey);
+    } catch {
+      show('state-error');
+    }
+  }
+
+  function setupCopyButton(key: string) {
+    const btn = document.getElementById('copy-button');
+    const iconCopy = document.getElementById('icon-copy');
+    const iconCheck = document.getElementById('icon-check');
+    if (!btn || !iconCopy || !iconCheck) return;
+
+    btn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(key);
+      iconCopy.classList.add('hidden');
+      iconCheck.classList.remove('hidden');
+      setTimeout(() => {
+        iconCopy.classList.remove('hidden');
+        iconCheck.classList.add('hidden');
+      }, 2000);
+    });
+  }
+
+  init();
+</script>

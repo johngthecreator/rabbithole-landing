@@ -16,10 +16,35 @@ import BgGrid from "@/components/assets/BgGrid.astro";
       </div>
       <p class="text-white font-black uppercase text-2xl">Lifetime Access</p>
       <p class="text-white/60 text-sm max-w-md">Pay once, own it forever. No subscriptions, no renewals — just RabbitHole on your device for life.</p>
-      <a
-        href="https://chromewebstore.google.com/detail/rabbithole/dldneoaipflgcldijkcjkfknemcjbcbh"
-        class="mt-4 inline-flex items-center justify-center px-8 py-4 bg-white text-black font-black uppercase text-lg rounded-full hover:bg-orange hover:text-white transition duration-200"
-      >Get Lifetime Access</a>
+      <button
+        id="buy-button"
+        class="mt-4 inline-flex items-center justify-center px-8 py-4 bg-white text-black font-black uppercase text-lg rounded-full hover:bg-orange hover:text-white transition duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+      >Get Lifetime Access</button>
     </div>
   </div>
 </section>
+
+<script>
+  const LAMBDA_BASE = import.meta.env.PUBLIC_LAMBDA_BASE;
+
+  const btn = document.getElementById('buy-button') as HTMLButtonElement | null;
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.textContent = 'Loading...';
+      try {
+        const res = await fetch(`${LAMBDA_BASE}/create-checkout`, { method: 'POST' });
+        const json = await res.json();
+        if (json.checkoutUrl) {
+          window.location.href = json.checkoutUrl;
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Get Lifetime Access';
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Get Lifetime Access';
+      }
+    });
+  }
+</script>
