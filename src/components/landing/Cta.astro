@@ -11,8 +11,10 @@ import BgGrid from "@/components/assets/BgGrid.astro";
     <BgGrid />
     <div class="flex flex-col items-start gap-4">
       <div class="flex items-end gap-2">
-        <span class="text-white font-black text-7xl lg:text-9xl tracking-tighter">$7.99</span>
-        <span class="text-white/60 font-black uppercase text-xl mb-3">one-time</span>
+        <!-- Original price with strikethrough -->
+          <span class="text-white/40 font-black text-3xl lg:text-5xl tracking-tighter line-through mb-1 lg:mb-2">$7.99</span>
+          <span class="text-white font-black text-7xl lg:text-9xl tracking-tighter">$1.99</span>
+          <span class="text-white/60 font-black uppercase text-xl mb-3">one-time</span>
       </div>
       <p class="text-white font-black uppercase text-2xl">Lifetime Access</p>
       <p class="text-white/60 text-sm max-w-md">Pay once, own it forever. No subscriptions, no renewals — just RabbitHole on your device for life.</p>
